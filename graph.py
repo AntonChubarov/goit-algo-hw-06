@@ -58,7 +58,7 @@ def dijkstra(graph, start_node, target_node):
     dijkstra_path = list(nx.dijkstra_path(graph, source=start_node, target=target_node))
     print(f"\nDijkstra path between {start_node} and {target_node}: {dijkstra_path}")
 
-    dijkstra_edges = result_list = [(dijkstra_path[i], dijkstra_path[i + 1]) for i in range(len(dijkstra_path) - 1)]
+    dijkstra_edges = [(dijkstra_path[i], dijkstra_path[i + 1]) for i in range(len(dijkstra_path) - 1)]
 
     degree_dict = dict(graph.degree())
     degrees = list(degree_dict.values())
@@ -80,7 +80,9 @@ def dijkstra(graph, start_node, target_node):
 
     edge_weights = nx.get_edge_attributes(graph, 'weight')
 
-    nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_weights, font_size=6)
+    edge_weights_str = {edge: f"{weight:.2f}" for edge, weight in edge_weights.items()}
+
+    nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_weights_str, font_size=6)
 
     plt.show()
 
@@ -126,7 +128,7 @@ def main():
     dfs(graph, 'Valjean')
 
     for u, v, d in graph.edges(data=True):
-        d['weight'] = abs(hash(f'{u}{v}')) % 10 + 1
+        d['weight'] = 1 / d['value']
 
     dijkstra(graph, 'Dahlia', 'MotherPlutarch')
 
