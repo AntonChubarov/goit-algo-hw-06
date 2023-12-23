@@ -58,6 +58,8 @@ def dijkstra(graph, start_node, target_node):
 def main():
     gml_file_path = './data/lesmis.gml'
 
+    print('Les Miserables graph\n')
+
     graph = nx.read_gml(gml_file_path)
 
     print("Nodes:", graph.number_of_nodes())
@@ -73,13 +75,13 @@ def main():
     for node, degree in top_nodes:
         print(f"{node}: {degree}")
 
-    draw(graph, title='Les Miserables')
+    draw(graph, title='Les Miserables characters interaction')
 
     bfs(graph, 'Valjean')
 
     dfs(graph, 'Valjean')
 
-    # Add edge weights: as edge value is the level of interaction, let's make the weight as 1 / value
+    # Add edge weights: as edge value is the level of coappearance, let's make the weight as 1 / value
     for u, v, d in graph.edges(data=True):
         d['weight'] = 1 / d['value']
 
