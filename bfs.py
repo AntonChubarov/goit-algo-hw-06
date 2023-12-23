@@ -11,7 +11,7 @@ def bfs_nx(g, start_node):
 
 
 def bfs(g, start_node):
-    queue = [(start_node, None)]  # Tuple (node, predecessor)
+    queue = [(start_node, None)]
     visited = set()
     forward_edges = []
 

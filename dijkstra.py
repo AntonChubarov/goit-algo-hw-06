@@ -48,10 +48,6 @@ def dijkstra(g, start_node, target_node):
 
 
 def main():
-    # Add edge weights: as edge value is the level of coappearance, let's make the weight as 1 / value
-    for u, v, d in graph.edges(data=True):
-        d['weight'] = 1 / d['value']
-
     print("Using NetworkX:")
     dijkstra_nx(graph, 'Dahlia', 'MotherPlutarch')
 
